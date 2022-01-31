@@ -1,0 +1,58 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/d49d524e-1a31-44e5-9717-7d6074866e32 # 
+title: American_Flights_API
+
+traits:
+  client-id-required:
+    headers:
+      client_id:
+        type: string
+      client_secret:
+        type: string
+    responses:
+      401:
+        description: Unauthorized or invalid client application credentials
+      500:
+        description: Bad response from authorization server, or WSDL SOAP Fault error
+
+/flights:
+  is: [client-id-required]
+  get:
+    queryParameters:
+      destination:
+        required: false
+        enum:
+          - SFO
+          - LAX
+          - CLE
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              Message: Flight displayed succesfully
+
+                        
+  post: 
+    is: [client-id-required]   
+    body:
+        application/json:
+          examples: {Message: ooops}
+   
+    responses:
+        201: 
+          body:
+            application/json:
+              example:
+                Message: Flight added but not really
+
+    
+  /{ID}:
+    is: [client-id-required]
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                 Message: Flight ID displayed successfully
