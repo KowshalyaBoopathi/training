@@ -17,6 +17,15 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="b57ced03-8c0a-4ac1-a354-0db9358b83ff" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 		<logger level="INFO" doc:name="Logger" doc:id="659c32ab-0aba-4250-a87b-675da6991fc9" message="#[payload]"/>
 		<logger level="INFO" doc:name="Logger" doc:id="eacd5c39-f03b-4727-bd0a-42aadf4a182c" />
 	</flow>
